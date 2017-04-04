@@ -4,6 +4,7 @@
   "main": "dist/src/server.js",
   "author": "Joel Tonnberg",
   "dependencies": {
+    "serialport": "^4.0.7",
     "ws": "^0.8.0"
   },
   "devDependencies": {
