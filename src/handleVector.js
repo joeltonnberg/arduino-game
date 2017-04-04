@@ -40,7 +40,7 @@ const adjust = (vectorData, codes, humidity) => {
     return vectorData;
 };
 
-const getVectorFromData = (accelerationVector, velocityVector, codes, humidity) => {
+const getVectorFromData = (accelerationVector, velocityVector, codes = [], humidity) => {
 
     let movement = 0.05;
 

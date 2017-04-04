@@ -61,7 +61,15 @@ const handleMessage = (data, socket) => {
  * @param codes
  * @private
  */
-const _onKeyCode = (socket, codes) => _socketData(socket, handleVector.adjust(socket.vectorData, codes, data.humidity()));
+const _onKeyCode = (socket, codes) => socket.codes = codes;
+
+/**
+ *
+ * @param clients
+ * @param humidity
+ * @private
+ */
+const _updateVectors = (clients, humidity) => clients.forEach((socket) => _socketData(socket, handleVector.adjust(socket.vectorData, socket.codes, humidity)));
 
 
 
@@ -70,7 +78,7 @@ const _onKeyCode = (socket, codes) => _socketData(socket, handleVector.adjust(so
  * @private
  */
 const _update = () => {
-
+    _updateVectors(socketUtils.clients(), data.humidity());
     socketUtils.broadcast({name : "update", data : {size : data.size(), humidity: data.humidity()}});
     setTimeout(() => _update(), 15);
 };
